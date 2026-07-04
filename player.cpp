@@ -23,19 +23,29 @@ void Player::InitSprites(Image testimage){
 
 void Player::FaceMouse(){
     Vector2 mousepos = GetMousePosition();
+    float hypotenuse = sqrt(pow((x - mousepos.x), 2) + pow((y - mousepos.y), 2));
 
     if(mousepos.x > x && mousepos.y > y){
-        float hypotenuse = sqrt(pow((x - mousepos.x), 2) + pow((y - mousepos.y), 2));
-        float oppositekatet = y - mousepos.y;
+        float oppositecathetus = y - mousepos.y;
 
-        rotation = ((asin(oppositekatet/hypotenuse) * (180/3.14))) * -1; // converting to degree because asin (arcsin) returns the value in radiansi
+        rotation = ((asin(oppositecathetus/hypotenuse) * (180/3.14))) * -1; // converting to degree because asin (arcsin) returns the value in radiansi
 
     }
     else if(mousepos.x < x && mousepos.y > y){
-        float hypotenuse = sqrt(pow((x - mousepos.x), 2) + pow((y - mousepos.y), 2));
-        float oppositekatet = x - mousepos.x;
+        float oppositecathetus = x - mousepos.x;
+        rotation = ((asin(oppositecathetus/hypotenuse) * (180/3.14)) + 90);
 
-        rotation = ((asin(oppositekatet/hypotenuse) * (180/3.14)) + 90);
+    }
+    else if(mousepos.x < x && mousepos.y < y){ //have to fix from this line and below//
+        float oppositecathetus = x - mousepos.x;
+
+        rotation = ((asin(oppositecathetus/hypotenuse) * (180/3.14)) + 180);
+
+    }
+    else if(mousepos.x < x && mousepos.y > y){
+        float oppositecathetus = x - mousepos.x;
+
+        rotation = ((asin(oppositecathetus/hypotenuse) * (180/3.14)) + 180) *-1;
 
     }
 
