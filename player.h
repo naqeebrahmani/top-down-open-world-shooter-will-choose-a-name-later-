@@ -8,6 +8,8 @@ class Player{
         Image image;
         Texture2D testsprite;
 
+        Rectangle framerec = {0, 0, 32, 32};
+
     public:
         Player(float x_pos, float y_pos);
 

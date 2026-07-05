@@ -12,7 +12,7 @@ Player::Player(float x_pos, float y_pos)
 }
 
 void Player::Draw(){
-    DrawTextureEx(testsprite, {x, y}, rotation, 4, WHITE);
+    DrawTexturePro(testsprite, framerec, Rectangle{x, y, 32*4, 32*4}, {64, 64}, rotation, WHITE);
 }
 
 void Player::InitSprites(Image testimage){
@@ -36,25 +36,20 @@ void Player::FaceMouse(){
         rotation = ((asin(oppositecathetus/hypotenuse) * (180/3.14)) + 90);
 
     }
-    else if(mousepos.x < x && mousepos.y < y){ //have to fix from this line and below//
+    else if(mousepos.x < x && mousepos.y < y){ 
         float oppositecathetus = x - mousepos.x;
 
         rotation = ((asin(oppositecathetus/hypotenuse) * (180/3.14)) + 180);
 
     }
     else if(mousepos.x < x && mousepos.y > y){
-        float oppositecathetus = x - mousepos.x;
+        float oppositecathetus = mousepos.y - y;
 
-        rotation = ((asin(oppositecathetus/hypotenuse) * (180/3.14)) + 180) *-1;
+        rotation = ((asin(oppositecathetus/hypotenuse) * (180/3.14)) + 270) *-1;
 
     }
 
 
-
-
-    //testrect
-
-    DrawRectanglePro(Rectangle{x, y, 100, 100}, {50, 50}, rotation, WHITE);
 
 
 
