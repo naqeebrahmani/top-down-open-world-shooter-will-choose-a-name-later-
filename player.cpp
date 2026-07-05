@@ -17,47 +17,34 @@ void Player::Draw(){
 
 void Player::InitSprites(Image testimage){
     image = testimage;
-    //ImageResizeNN(&image, image.width*4, image.height*4);
     this->testsprite = LoadTextureFromImage(image);
 }
 
 void Player::FaceMouse(){
     Vector2 mousepos = GetMousePosition();
-    float hypotenuse = sqrt(pow((x - mousepos.x), 2) + pow((y - mousepos.y), 2));
+    float hypotenuse = sqrt(pow((x - mousepos.x), 2) + pow((y - mousepos.y), 2)); //using the distance formula to find the length of the hypotenuse
+
 
     if(mousepos.x > x && mousepos.y > y){
-        float oppositecathetus = y - mousepos.y;
+        float oppositecathetus = mousepos.y - y;
 
-        rotation = ((asin(oppositecathetus/hypotenuse) * (180/3.14))) * -1; // converting to degree because asin (arcsin) returns the value in radiansi
-
+        rotation = ((asin(oppositecathetus/hypotenuse) * (180/3.14)) + 90); //multiplying with (180/3.14) to change to degrees because asin returns the value in radians
     }
     else if(mousepos.x < x && mousepos.y > y){
-        float oppositecathetus = x - mousepos.x;
-        rotation = ((asin(oppositecathetus/hypotenuse) * (180/3.14)) + 90);
-
-    }
-    else if(mousepos.x < x && mousepos.y < y){ 
         float oppositecathetus = x - mousepos.x;
 
         rotation = ((asin(oppositecathetus/hypotenuse) * (180/3.14)) + 180);
-
     }
-    else if(mousepos.x < x && mousepos.y > y){
+    else if(mousepos.x < x && mousepos.y < y){
+        float oppositecathetus = y - mousepos.y;
+
+        rotation = ((asin(oppositecathetus/hypotenuse) * (180/3.14)) + 270);
+    }
+    else if(mousepos.x > x && mousepos.y < y){
         float oppositecathetus = mousepos.y - y;
 
-        rotation = ((asin(oppositecathetus/hypotenuse) * (180/3.14)) + 270) *-1;
-
+        rotation = ((asin(oppositecathetus/hypotenuse) * (180/3.14)) + 90);
     }
-
-
-
-
-
-
-
-
-
-
     
 
 }
