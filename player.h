@@ -19,6 +19,9 @@ class Player{
 
         void FaceMouse();
 
+        void movementtest1();
+
+        void movementtest2();
 
 
 

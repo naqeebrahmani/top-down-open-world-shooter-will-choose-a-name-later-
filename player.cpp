@@ -48,3 +48,15 @@ void Player::FaceMouse(){
     
 
 }
+
+void Player::movementtest1(){
+    if(IsKeyPressed(KEY_W)){
+        y -= 5;
+    }
+
+}
+
+void Player::movementtest2(){
+    
+}
+
